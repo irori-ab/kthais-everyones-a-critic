@@ -1,6 +1,6 @@
-# Pre-requisites
+## Pre-requisites
 
-## Get Groq API key
+### Get Groq API key
 
 - Sign up for [Groq](https://console.groq.com)
 - Get an [API key](https://console.groq.com/keys)
@@ -11,6 +11,10 @@
     echo "groq_api_key = \"gsk_...\"" >> .streamlit/secrets.toml
     ```
 
+### Install `uv`
+
+* Mac: `brew install uv`
+* Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
 
 ## Running 
 
