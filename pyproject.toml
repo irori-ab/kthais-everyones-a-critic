@@ -1,0 +1,27 @@
+[project]
+name = "kthais-everyones-a-critic"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "langchain-groq>=1.0.0",
+    "pytest>=8.4.2",
+    "streamlit>=1.50.0",
+]
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ['src']
+include = ['eisa-critic*']
+
+[tool.uv.sources]
+kthais-everyones-a-critic = { workspace = true, editable = true }
+
+[dependency-groups]
+dev = [
+    "kthais-everyones-a-critic",
+]
