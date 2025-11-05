@@ -41,11 +41,11 @@ the code review flows.
 * Mac: `brew install uv`
 * Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
 
-## Running 
+## Running
 
-```bash 
-source ./.venv/bin/activate
-streamlit run critic.py
+```bash
+uv sync
+uv run streamlit run critic.py
 ```
 
 ## Run tests
@@ -54,7 +54,7 @@ streamlit run critic.py
 uv run pytest
 ```
 
-## Bootstrapping 
+## Bootstrapping
 
 ```bash
 uv init
