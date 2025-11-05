@@ -28,7 +28,9 @@ def main():
     st.write("You've selected harshness:", st.session_state.harshness)
 
 
-    groq_api_key = st.secrets.groq_api_key
+    
+    groq_api_key = os.environ.get('GROQ_API_KEY') or st.secrets.groq_api_key
+    
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
