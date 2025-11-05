@@ -19,7 +19,7 @@ where = ['src']
 include = ['eisa-critic*']
 
 [tool.uv.sources]
-kthais-everyones-a-critic = { editable = true }
+kthais-everyones-a-critic = { workspace = true}
 
 [dependency-groups]
 dev = [
