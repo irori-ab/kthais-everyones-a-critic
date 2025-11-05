@@ -42,7 +42,7 @@ def main():
         st.chat_message("user").write(prompt)
 
         system_prompt = "You provide {harshness} feedback on writing, considering tone, style and grammar".format(harshness=st.session_state.harshness)
-        system_message = {"role": "system", "content": prompt}
+        system_message = {"role": "system", "content": system_prompt}
         
         # debug print:
         # st.write("System prompt: ", system_prompt)
