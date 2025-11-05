@@ -54,6 +54,13 @@ uv run streamlit run critic.py
 uv run pytest
 ```
 
+## Lint code
+
+```bash
+uv run ruff check --fix
+uv run ruff format
+```
+
 ## Bootstrapping
 
 ```bash
