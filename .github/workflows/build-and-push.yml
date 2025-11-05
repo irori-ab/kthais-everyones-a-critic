@@ -22,7 +22,7 @@ jobs:
       run: |
         docker build \
           -t ghcr.io/${{ github.repository_owner }}/${{ github.event.pull_request.number }}:pr-${{ github.event.pull_request.number }} \
-          -f Dockerfile .
+          -f ./Dockerfile .
 
     - name: Push Docker image to GHCR
       run: |
