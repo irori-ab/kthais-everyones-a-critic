@@ -12,13 +12,12 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write  # om du vill använda OIDC auth
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up QEMU (for multi-arch)
+      - name: Set up QEMU (for multi-arch support)
         uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
@@ -38,7 +37,7 @@ jobs:
           file: ./app/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/my-app:pr-${{ github.event.pull_request.number }}
-            ghcr.io/${{ github.repository_owner }}/my-app:pr-${{ github.event.pull_request.head.ref }}
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/my-app:buildcache
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/my-app:buildcache,mode=max
+            ghcr.io/${{ github.repository_owner }}/critic:pr-${{ github.event.pull_request.number }}
+            ghcr.io/${{ github.repository_owner }}/critic:pr-${{ github.event.pull_request.head.ref }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/critic:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/critic:buildcache,mode=max
