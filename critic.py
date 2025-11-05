@@ -15,7 +15,18 @@ def main():
         unsafe_allow_html=True,
     )
 
-    st.title("Everyone's a critic")
+    groq_api_key = st.secrets.groq_api_key
+    title_quote_response = llm_groq.chat(
+        [
+            {
+                "role": "user",
+                "content": "Return a random quote of max one sentencefrom the book 'The Hitchhiker's Guide to the Galaxy'. Only return the text and nothing else!",
+            }
+        ],
+        groq_api_key,
+    )
+
+    st.title(title_quote_response.content)
 
     niklavs = "public/Screenshot 2025-11-05 at 19.10.36.png"
 
@@ -32,8 +43,6 @@ def main():
     )
 
     st.write("You've selected harshness:", st.session_state.harshness)
-
-    groq_api_key = st.secrets.groq_api_key
 
     for msg in st.session_state.messages:
         avatar = niklavs if msg["role"] == "assistant" else None
