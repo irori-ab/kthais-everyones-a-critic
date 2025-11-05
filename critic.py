@@ -23,7 +23,7 @@ def main():
         st.session_state["harshness"] = "encouraging"
 
 
-    st.radio("Critique mode:", ["encouraging", "constructive", "harsh"], key="harshness")
+    st.radio("Critique mode:", ["encouraging", "constructive", "harsh", "chinese"], key="harshness")
 
     st.write("You've selected harshness:", st.session_state.harshness)
 
@@ -41,8 +41,8 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
 
-        system_prompt = "You provide {harshness} feedback on writing, considering tone, style and grammar".format(harshness=st.session_state.harshness)
-        system_message = {"role": "system", "content": prompt}
+        system_prompt = "You provide {harshness} feedback on writing, considering tone, style and grammar.".format(harshness=st.session_state.harshness)
+        system_message = {"role": "system", "content": system_prompt}
         
         # debug print:
         # st.write("System prompt: ", system_prompt)
