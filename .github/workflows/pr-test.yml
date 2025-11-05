@@ -28,8 +28,6 @@ jobs:
         run: |
           mkdir -p .streamlit
           echo "groq_api_key = '${GROQ_API_KEY}'" > .streamlit/secrets.toml
-          echo "✅ Created .streamlit/secrets.toml"
-          cat .streamlit/secrets.toml
 
       - name: Run pytest
         run: |
