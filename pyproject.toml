@@ -24,4 +24,5 @@ kthais-everyones-a-critic = { workspace = true}
 [dependency-groups]
 dev = [
     "kthais-everyones-a-critic",
+    "ruff>=0.14.3",
 ]
