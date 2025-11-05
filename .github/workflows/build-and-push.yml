@@ -3,7 +3,8 @@ name: Build & Push Docker PR Image
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - main
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up QEMU (for multi-arch support)
+      - name: Set up QEMU (for multi-arch)
         uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
@@ -38,6 +39,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/critic:pr-${{ github.event.pull_request.number }}
-            ghcr.io/${{ github.repository_owner }}/critic:pr-${{ github.event.pull_request.head.ref }}
+            ghcr.io/${{ github.repository_owner }}/critic:${{ github.sha }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/critic:buildcache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/critic:buildcache,mode=max
