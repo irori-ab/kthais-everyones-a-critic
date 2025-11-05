@@ -1,6 +1,5 @@
 
 import streamlit as st
-import os
 
 from eisa_critic.llm import llm_groq
 
