@@ -2,7 +2,7 @@ name: Run Tests on Pull Request
 
 on:
   pull_request:
-    branches: [ main, develop, master ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -27,12 +27,10 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           mkdir -p .streamlit
-          echo "[groq]" > .streamlit/secrets.toml
-          echo "groq_api_key = '${GROQ_API_KEY}'" >> .streamlit/secrets.toml
-          
+          echo "groq_api_key = '${GROQ_API_KEY}'" > .streamlit/secrets.toml
+          echo "✅ Created .streamlit/secrets.toml"
+          cat .streamlit/secrets.toml
+
       - name: Run pytest
         run: |
-          ls -la .streamlit
-          cat .streamlit/secrets.toml
           uv run pytest -v
-        working-directory: ${{ github.workspace }}
