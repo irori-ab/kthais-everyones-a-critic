@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 
 from eisa_critic.llm import llm_groq
 
@@ -29,6 +28,8 @@ def main():
 
     st.title(title_quote_response.content)
 
+    niklavs = "public/Screenshot 2025-11-05 at 19.10.36.png"
+
     if ("messages" not in st.session_state) or len(st.session_state) == 1:
         st.session_state["messages"] = [
             {"role": "assistant", "content": "I will provide feedback on your writing"}
@@ -44,7 +45,8 @@ def main():
     st.write("You've selected harshness:", st.session_state.harshness)
 
     for msg in st.session_state.messages:
-        st.chat_message(msg["role"]).write(msg["content"])
+        avatar = niklavs if msg["role"] == "assistant" else None
+        st.chat_message(msg["role"], avatar=avatar).write(msg["content"])
 
     if prompt := st.chat_input():
         if not groq_api_key.startswith("gsk_"):
@@ -70,7 +72,7 @@ def main():
 
         st.session_state.messages.append({"role": "assistant", "content": msg})
 
-        st.chat_message("assistant").write(msg)
+        st.chat_message("assistant", avatar=niklavs).write(msg)
 
 
 if __name__ == "__main__":
