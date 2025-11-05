@@ -29,7 +29,10 @@ jobs:
           mkdir -p .streamlit
           echo "[groq]" > .streamlit/secrets.toml
           echo "groq_api_key = '${GROQ_API_KEY}'" >> .streamlit/secrets.toml
-
+          
       - name: Run pytest
         run: |
+          ls -la .streamlit
+          cat .streamlit/secrets.toml
           uv run pytest -v
+        working-directory: ${{ github.workspace }}
