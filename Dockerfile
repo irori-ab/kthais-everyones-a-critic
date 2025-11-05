@@ -1,0 +1,27 @@
+# app/Dockerfile
+
+FROM python:3.12-slim-trixie
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Install dependencies
+# uv sync --no-install-project will install the dependencies 
+# of the project but not the project itself. Since the project changes frequently, 
+# but its dependencies are generally static, this can be a big time saver.
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --locked --no-install-project
+
+# Copy the project into the image
+ADD . /app
+
+WORKDIR /app
+
+RUN uv sync --locked
+
+EXPOSE 8501
+
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+ENTRYPOINT ["uv", "run", "streamlit", "run", "critic.py", "--server.port=8501", "--server.address=0.0.0.0"]
