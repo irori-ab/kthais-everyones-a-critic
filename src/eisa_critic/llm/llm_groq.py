@@ -1,8 +1,7 @@
-
 from langchain_groq import ChatGroq
 
 
-def chat(messages, groq_api_key): 
+def chat(messages, groq_api_key):
     client = ChatGroq(
         model="openai/gpt-oss-120b",
         temperature=0,
@@ -10,7 +9,7 @@ def chat(messages, groq_api_key):
         reasoning_format="parsed",
         timeout=None,
         max_retries=2,
-        api_key=groq_api_key
+        api_key=groq_api_key,
         # other params...
     )
 
