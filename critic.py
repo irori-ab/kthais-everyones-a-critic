@@ -14,7 +14,7 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
-    st.title("Everyone's a critic")
+    st.title("Niklavs Visockis is the GOAT")
 
     if ("messages" not in st.session_state) or len(st.session_state) == 1:
         st.session_state["messages"] = [{"role": "assistant", "content": "I will provide feedback on your writing"}]
@@ -23,7 +23,7 @@ def main():
         st.session_state["harshness"] = "encouraging"
 
 
-    st.radio("Critique mode:", ["encouraging", "constructive", "harsh"], key="harshness")
+    st.radio("Critique mode:", ["encouraging", "constructive", "harsh", "brainrotty"], key="harshness")
 
     st.write("You've selected harshness:", st.session_state.harshness)
 
