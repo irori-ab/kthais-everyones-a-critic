@@ -15,7 +15,18 @@ def main():
         unsafe_allow_html=True,
     )
 
-    st.title("Everyone's a critic")
+    groq_api_key = st.secrets.groq_api_key
+    title_quote_response = llm_groq.chat(
+        [
+            {
+                "role": "user",
+                "content": "Return a random quote of max one sentencefrom the book 'The Hitchhiker's Guide to the Galaxy'. Only return the text and nothing else!",
+            }
+        ],
+        groq_api_key,
+    )
+
+    st.title(title_quote_response.content)
 
     if ("messages" not in st.session_state) or len(st.session_state) == 1:
         st.session_state["messages"] = [
@@ -30,8 +41,6 @@ def main():
     )
 
     st.write("You've selected harshness:", st.session_state.harshness)
-
-    groq_api_key = st.secrets.groq_api_key
 
     for msg in st.session_state.messages:
         st.chat_message(msg["role"]).write(msg["content"])
